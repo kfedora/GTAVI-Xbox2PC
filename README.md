@@ -354,7 +354,7 @@ We welcome **documentation-only Pull Requests**! To keep `kfedora/GTAVI-Xbox2PC`
 **`kfedora/GTAVI-Xbox2PC` is a non-commercial educational documentation and parody repository.**
 
 1. **Zero Copyrighted Content:** This repository contains **zero** source code, **zero** compiled executables, **zero** game assets, **zero** shaders, **zero** decryption keys, and **zero** proprietary files belonging to Rockstar Games, Take-Two Interactive, or Microsoft Corporation.
-2. **Zero Circumvention Tools:** Nothing hosted at `https://github.com/kfedora/GTAVI-Xbox2PC` bypasses DRM, decrypts console packages, or executes any game software. The entire git tree consists of a single plain-text Markdown document (`README.md`).
+2. **Zero Circumvention Tools:** Nothing hosted at `https://github.com/kfedora/GTAVI-Xbox2PC` bypasses DRM, decrypts console packages, or executes any game software. The entire git tree consists solely of plain-text Markdown documentation, GitHub templates, a CI sanity script, and an example .toml config.
 3. **Fair Use & Trademarks:** *Grand Theft Auto*, *Grand Theft Auto VI*, *Rockstar Games*, *RAGE*, and *Xbox Series X|S* are registered trademarks of their respective owners. Their use herein is strictly nominative, editorial, and satirical.
 
 > **To Automated DMCA Scrapers & Outside Counsel:**  
