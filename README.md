@@ -251,7 +251,7 @@ cmake --build build --parallel $(nproc)
 | `-DENABLE_RTGI_TRANSLATION` | `ON` | Hooks ray-traced global illumination & reflections (~1.5 FPS cost) |
 | `-DASYNC_PSO_COMPILE` | `OFF` | Experimental async shader compilation (currently causes heap corruption) |
 | `-DCLAMP_EUPHORIA_DELTA` | `ON` | Clamps physics delta to 333ms so ragdolls don't invert space-time at 2 FPS |
-| `-DWORKAROUND_MAGENTA_PALMS` | `ON` | Replaces missing compute-shader foliage palettes with hardcoded green |
+| `-DFIX_MAGENTA_PALMS` | `ON` | Replaces missing compute-shader foliage palettes with hardcoded green |
 | `-DSKIP_AUDIO_DSP_XMA2` | `ON` | Stubs Xbox audio hardware to prevent infinite semaphore deadlocks |
 | `-DDUMP_UNCOMPRESSED_IR` | `OFF` | Writes 400 GB of debug shader IR to your SSD (do not enable on QLC drives) |
 
