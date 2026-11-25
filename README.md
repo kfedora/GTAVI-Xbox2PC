@@ -139,14 +139,14 @@ People frequently ask why an **RTX 5070 Ti** paired with a **Ryzen 7 7800X3D** r
 
 ```text
 Total Frame Time: 416.6 ms (2.40 FPS)
-[========================================================================================] 100%
+[======================================================================] 100%
 
 Breakdown by Subsystem:
-1. [██████████████████████████████████████] 182.4 ms (43.8%) — Synchronous DXIL -> SPIR-V / PSO Compile
-2. [██████████████████████████            ] 124.0 ms (29.8%) — CPU->GPU Unified Memory Barrier Flush
-3. [███████████████                       ]  71.2 ms (17.1%) — RTGI TLAS/BLAS Full CPU Rebuild
-4. [█████                                 ]  24.5 ms ( 5.9%) — RAGE9 Thread Spin-Lock Contention
-5. [███                                   ]  14.5 ms ( 3.4%) — Actual GPU Rasterization & Ray Tracing
+1. [██████████████████████████████] 182.4 ms (43.8%) — DXIL -> SPIR-V / PSO Compile
+2. [████████████████████          ] 124.0 ms (29.8%) — Unified Memory Barrier Flush
+3. [███████████                   ]  71.2 ms (17.1%) — RTGI TLAS/BLAS CPU Rebuild
+4. [████                          ]  24.5 ms ( 5.9%) — RAGE9 Spin-Lock Contention
+5. [██                            ]  14.5 ms ( 3.4%) — GPU Rasterization & RT
 ```
 
 **Key Takeaway:** The GPU itself finishes drawing a frame of *Grand Theft Auto VI* in **~14.5 ms** (roughly 69 FPS capable). The remaining **402.1 ms** is pure CPU-side synchronization, memory copying, and shader translation overhead. Once asynchronous pipeline caching and dirty-page tracking replace full-frame memory flushes, frame rates are projected to jump significantly.
@@ -236,7 +236,7 @@ cmake -B build -G Ninja \
   -DGTAVI_BACKEND=DX12 \
   -DENABLE_RTGI_TRANSLATION=ON \
   -DCLAMP_EUPHORIA_DELTA=ON \
-  -DWORKAROUND_MAGENTA_PALMS=ON \
+  -DFIX_MAGENTA_PALMS=ON \
   -DSKIP_AUDIO_DSP_XMA2=ON
 
 # 4. Build the static lifter and host runtime (expect ~45 minutes link time)
