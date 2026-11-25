@@ -125,3 +125,147 @@ The recompilation pipeline separates static binary translation from runtime OS/H
 +-----------------------------------------------------------------------+
 |                Your PC Rendering Lucia at 2.4 FPS                     |
 +-----------------------------------------------------------------------+
+```
+
+---
+
+## 🛠️ Building from Source
+
+> **⚠️ Reminder:** Per the November 24 DMCA notice, the `src/` directory is **not hosted on GitHub**. The instructions below apply only if you are maintaining your own clean-room local fork or testing compatible toolchain modules.
+
+### Prerequisites
+* **OS:** Windows 11 (25H2+) or Linux (Kernel 6.12+ with `ntsync` enabled)
+* **Compiler:** Clang 20+ / MSVC 19.44+ with full C++23 support
+* **Build System:** CMake 4.0+ & Ninja
+* **SDKs:**
+  * DirectX 12 Agility SDK (1.715+) or Vulkan SDK 1.4.x
+  * LLVM 21 Development Headers (for static lifting pass)
+* **Storage:** At least **450 GB free NVMe space** (180 GB for assets + 270 GB for uncompressed runtime shader caches and debug symbols)
+
+### Build Commands (Reference)
+
+```bash
+# 1. Clone the documentation reference
+git clone https://github.com/YOUR_USERNAME/Leonida-Recomp.git
+cd Leonida-Recomp
+
+# 2. Verify repository contents
+ls -la
+# Output: README.md (and literally nothing else)
+
+# 3. Configure CMake (Requires your local private src/ tree)
+cmake -B build -G Ninja \
+  -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+  -DENABLE_DX12_BACKEND=ON \
+  -DENABLE_EXPERIMENTAL_RTGI=ON \
+  -DTARGET_FPS_CAP=5
+
+# 4. Compile
+cmake --build build --parallel $(nproc)
+```
+
+### Runtime Configuration (`leonida.toml`)
+
+If your local build reaches initialization, place a `leonida.toml` configuration file next to your compiled binary:
+
+```toml
+[graphics]
+backend = "dx12"                # Options: "dx12", "vulkan"
+ray_tracing = true              # Disable if you want +1.5 FPS boost
+resolution_scale = 0.50         # Recommended for sub-5090 GPUs
+async_shader_compile = false    # Currently causes instant heap corruption
+
+[system]
+memory_allocation_gb = 28       # Minimum 24GB recommended
+unlock_framerate = false        # Do NOT unlock; physics engine breaks above 5 FPS
+log_syscalls = true             # Useful for debugging "Gone Fishing" crashes
+
+[debug]
+skip_intro_logos = true
+wireframe_alligators = false
+```
+
+---
+
+## 🐛 Known Issues & Troubleshooting
+
+<details>
+<summary><b>1. The game runs at 2 FPS on my brand-new RTX 5070 Ti!</b></summary>
+
+This is expected behavior right now. We are currently performing synchronous CPU-side command list validation and unoptimized DXIL-to-SPIR-V translation on every draw call. Think of it less as "lag" and more as "high-resolution interactive concept art."
+</details>
+
+<details>
+<summary><b>2. My SSD lost 300 GB of free space while compiling shaders.</b></summary>
+
+Unlike recent GPU driver bugs that caused excessive SSD writes, this one is actually our fault. Our temporary pipeline cache dumps uncompressed intermediate LLVM IR to disk on every frame boundary. Do not run this on a QLC drive you care about.
+</details>
+
+<details>
+<summary><b>3. Why is the repository empty except for README.md?</b></summary>
+
+Because Take-Two Interactive's legal automation took down 3,007 repositories yesterday, and we wanted to see if a completely empty repository containing zero code, zero assets, and one well-formatted Markdown file still triggers a DMCA takedown notice.
+</details>
+
+<details>
+<summary><b>4. Characters freeze in Jason's "Gone Fishing" mission.</b></summary>
+
+The water surface buoyancy solver attempts to divide by zero when frame delta exceeds `333ms` (i.e., below 3 FPS). You can temporarily bypass this by staring directly at the floorboards of the boat until your framerate rises to 4 FPS.
+</details>
+
+---
+
+## 🗺️ Roadmap
+
+* **Phase 1: Proof of Concept** *(Completed)*
+  * [x] Decrypt & map Xbox Series executable entry points.
+  * [x] Boot to title screen without immediate kernel panic.
+  * [x] Complete Lucia's prologue at 1–3 FPS.
+* **Phase 2: Playability & Optimization** *(In Progress - Private Branches)*
+  * [ ] Fix RAGE9 job scheduler thread contention (Target: **10 FPS**).
+  * [ ] Implement asynchronous PSO caching (eliminate 10-second freezes when turning the camera).
+  * [ ] Fix XMA2 audio decoding so Vice City radio stations work.
+  * [ ] Complete *"Gone Fishing"* without falling through the ocean.
+* **Phase 3: Release Parity** *(TBD)*
+  * [ ] Achieve stable 30 FPS on midrange hardware.
+  * [ ] Native Ultrawide (21:9 / 32:9) HUD scaling.
+  * [ ] Survive long enough for Rockstar to officially announce the actual PC version.
+
+---
+
+## ❓ Frequently Asked Questions
+
+**Q: Can I download the compiled `.exe` or leaked Xbox files here?**  
+**A:** **No.** Sharing copyrighted game files, executables, or assets is strictly prohibited. This repository contains only a single `README.md` file. Do not ask for links in Issues or Pull Requests.
+
+**Q: Why didn't Rockstar just launch GTA VI on PC day one?**  
+**A:** Good question. Ask Take-Two.
+
+**Q: Where did all the active developers go?**  
+**A:** Following the November 24 GitHub DMCA purge, groups have moved into private Discord channels, self-hosted Forgejo instances, and invite-only tracking groups monitored by `PortWatchVI`.
+
+**Q: Will Take-Two DMCA a repository that literally only has a README file?**  
+**A:** Let's find out together. Place your bets in the Issues tab.
+
+---
+
+## ⚖️ Legal Disclaimer
+
+This repository (`Leonida-Recomp`) is an **educational documentation and parody project**. 
+
+1. **No Copyrighted Material:** This repository hosts **no** source code, binaries, shaders, textures, audio, decryption keys, or proprietary data belonging to Rockstar Games, Take-Two Interactive, or Microsoft Corporation.
+2. **No Circumvention:** This repository provides no tools capable of bypassing DRM, decrypting console packages, or executing any software whatsoever. Literally the only file in the git tree is `README.md`.
+3. **Trademarks:** *Grand Theft Auto*, *Grand Theft Auto VI*, *Rockstar Games*, *RAGE*, and *Xbox* are registered trademarks of their respective owners. Their mention here is purely descriptive/editorial.
+
+If you are an automated DMCA bot or legal representative reading this: congratulations, you have successfully scanned a plain-text Markdown file. Please tell your supervisor that there is nothing here to take down.
+
+---
+
+## 🙏 Acknowledgements
+
+* **PortWatchVI** for tracking all 35 community recompilation efforts in real time.
+* **The 3,007 fallen forks of `Leonida`** — gone, not forgotten.
+* **RTX 5070 Ti owners** bravely sacrificing their SSDs for 2.4 FPS gameplay footage.
+```
+
+---
