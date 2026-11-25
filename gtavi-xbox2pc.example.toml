@@ -1,0 +1,31 @@
+# GTAVI-Xbox2PC Example Runtime Configuration
+# Copy to `gtavi-xbox2pc.toml` alongside your locally compiled binary
+# (Reminder: No binaries, source code, or game assets are hosted in this repo)
+
+[system]
+memory_bridge_gb = 28                 # Minimum 24GB recommended for ReBAR bridge
+enable_rebar_fastpath = true          # Disabling drops FPS by ~90% (0.18 FPS)
+thread_pool_override = 16             # Match physical CPU thread count
+unlock_framerate = false              # DO NOT UNLOCK: Water physics implode above 5 FPS
+decompression_thread_7_stack_mb = 64  # Mitigates Downtown Vice City loading crash
+
+[graphics]
+api = "dx12"                          # Options: "dx12", "vulkan"
+internal_resolution_scale = 0.50      # 0.50 recommended on RTX 5070 Ti / RX 9070 XT
+ray_tracing_gi = true                 # Set false for ~1.5 FPS uplift
+ray_tracing_reflections = true
+async_pso_compile = false             # Experimental; currently causes heap corruption
+fix_magenta_palms = true              # Hardcodes green palette for Vice Beach foliage
+dlss5_neural_hook = false             # Experimental external hook; unstable on HUD
+apex_framegen_multiplier = 1          # Setting to 6x creates 1.4s input lag
+
+[audio]
+skip_audio_dsp_xma2 = true            # Stubs XMA2 to prevent semaphore deadlocks
+airboat_sine_wave_hz = 440            # Default test tone frequency
+
+[debug]
+skip_rockstar_intro = true
+clamp_euphoria_delta_ms = 333         # Prevents ragdoll spacetime inversion below 3 FPS
+wireframe_alligators = false
+dump_uncompressed_ir = false          # WARNING: Writes ~400 GB to NVMe drive
+log_unimplemented_syscalls = true     # Essential for debugging "Gone Fishing" crashes
