@@ -1,0 +1,9 @@
+blank_issues_enabled: true
+contact_links:
+  - name: ⚖️ Legal Disclaimer & DMCA Info
+    url: https://github.com/kfedora/GTAVI-Xbox2PC#legal-disclaimer
+    about: Read before filing a takedown notice on a Markdown repository.
+  - name: 📊 Hardware Benchmark Table
+    url: https://github.com/kfedora/GTAVI-Xbox2PC#hardware-benchmarks
+    about: Check existing 1–5 FPS telemetry before submitting yours.
+    
