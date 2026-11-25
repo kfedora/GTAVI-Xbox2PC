@@ -1,0 +1,63 @@
+name: 🖥️ Hardware Benchmark Submission
+description: Report your 1–5 FPS telemetry on Lucia's Prologue or "Gone Fishing"
+title: "[Benchmark]: <GPU> / <CPU> — <X.X FPS>"
+labels: ["benchmark", "telemetry"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for contributing to the `PortWatchVI` / `GTAVI-Xbox2PC` hardware ledger!
+        Remember: **Do not attach binaries, shader caches, or console dumps.**
+
+  - type: input
+    id: cpu
+    attributes:
+      label: CPU Model
+      placeholder: "e.g., AMD Ryzen 7 7800X3D"
+    validations:
+      required: true
+
+  - type: input
+    id: gpu
+    attributes:
+      label: GPU Model & VRAM
+      placeholder: "e.g., GeForce RTX 5070 Ti (16GB)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: backend
+    attributes:
+      label: Graphics Translation Backend
+      options:
+        - "DX12 (Native Agility SDK)"
+        - "Vulkan 1.4 (SPIR-V / vkd3d)"
+        - "Imagination (I only read the README)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: rebar
+    attributes:
+      label: Resizable BAR / Smart Access Memory
+      options:
+        - "Enabled (2.4 FPS tier)"
+        - "Disabled (0.18 FPS slideshow mode)"
+    validations:
+      required: true
+
+  - type: input
+    id: avg_fps
+    attributes:
+      label: Average FPS & 1% Low
+      placeholder: "e.g., 2.4 FPS avg / 0.8 FPS 1% low"
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Visual Quirks & Stability Notes
+      placeholder: "e.g., Lucia's prologue completed; Vice Beach palm trees glowing neon magenta; SSD lost 270 GB."
+      
