@@ -1,4 +1,3 @@
-
 <div align="center">
 
 ```text
@@ -17,6 +16,7 @@
 [![Target Binary](https://img.shields.io/badge/Target-Xbox_Series_X%7CS_(XSX)-107C10?style=for-the-badge&logo=xbox)](https://github.com/kfedora/GTAVI-Xbox2PC)
 [![Graphics API](https://img.shields.io/badge/Backend-DX12_%7C_Vulkan_1.4-0078D4?style=for-the-badge)](https://github.com/kfedora/GTAVI-Xbox2PC)
 [![Ray Tracing](https://img.shields.io/badge/RTGI-Hardware_Ray_Query-76B900?style=for-the-badge)](https://github.com/kfedora/GTAVI-Xbox2PC)
+[![Zero-IP CI](https://img.shields.io/github/actions/workflow/status/kfedora/GTAVI-Xbox2PC/verify-docs.yml?branch=master&style=for-the-badge&label=Zero--IP_CI)](https://github.com/kfedora/GTAVI-Xbox2PC/actions)
 [![DMCA Speedrun](https://img.shields.io/badge/DMCA_Status-Any%25_Speedrun-DC143C?style=for-the-badge)](https://github.com/kfedora/GTAVI-Xbox2PC)
 [![GitHub Stars](https://img.shields.io/github/stars/kfedora/GTAVI-Xbox2PC?style=for-the-badge&color=gold)](https://github.com/kfedora/GTAVI-Xbox2PC/stargazers)
 
@@ -205,7 +205,7 @@ All tests run on **Console Parity Visual Settings** (1440p internal resolution u
 ## Build & Runtime Specification
 
 > [!WARNING]
-> **Read Before Cloning:** Because this repository intentionally contains **only `README.md`**, running `cmake` inside a clone of `kfedora/GTAVI-Xbox2PC` will immediately fail unless you supply your own private clean-room `src/` directory and legally dumped console assets.
+> **Read Before Cloning:** Because this repository intentionally contains **only documentation, GitHub templates, and example configs (zero source code)**, running `cmake` inside a clone of `kfedora/GTAVI-Xbox2PC` will immediately fail unless you supply your own private clean-room `src/` directory and legally dumped console assets.
 
 ### System Prerequisites
 
@@ -226,9 +226,9 @@ All tests run on **Console Parity Visual Settings** (1440p internal resolution u
 git clone https://github.com/kfedora/GTAVI-Xbox2PC.git
 cd GTAVI-Xbox2PC
 
-# 2. Verify repository contents (spoiler: there is no copyrighted code here)
+# 2. Verify repository contents (spoiler: zero source code or copyrighted binaries)
 ls -la
-# Output: README.md
+# Output: .github/  CHANGELOG.md  CONTRIBUTING.md  LICENSE  README.md  SECURITY.md  gtavi-xbox2pc.example.toml
 
 # 3. Configure CMake (Requires your private clean-room src/ directory)
 cmake -B build -G Ninja \
@@ -257,6 +257,8 @@ cmake --build build --parallel $(nproc)
 
 ### Sample Runtime Configuration (`gtavi-xbox2pc.toml`)
 
+See [`gtavi-xbox2pc.example.toml`](gtavi-xbox2pc.example.toml) in the root directory for the full copy-ready template:
+
 ```toml
 # Place alongside your locally compiled binary (not included in this repo)
 
@@ -284,6 +286,8 @@ log_unimplemented_syscalls = true     # Essential for debugging "Gone Fishing" c
 
 ## Development Chronicle (Nov 22 – Nov 25, 2026)
 
+See [`CHANGELOG.md`](CHANGELOG.md) for the full release ledger.
+
 * **Nov 22, 2026:** First community efforts kick off to analyze Xbox Series OS calls and RAGE9 container formats ahead of executable extraction.
 * **Nov 23, 2026:** The Xbox Series executable surfaces online. Static recompilation projects (`Leonida`, `VIctory`) begin mapping PE sections and entry points. First frame of the main menu renders on PC within hours.
 * **Nov 24, 2026 (Morning):** First verified gameplay footage hits social media—Lucia's prologue walking around at **1 to 3 FPS** with textures, character models, and early ray-traced lighting on an RTX 5070 Ti + Ryzen 7 7800X3D.
@@ -301,9 +305,9 @@ No. Your GPU is barely doing anything (~18% usage). Nearly 96% of your frame tim
 </details>
 
 <details>
-<summary><b>2. Why does this repository only have README.md? Where is the download?</b></summary>
+<summary><b>2. Why is there no src/ folder or download in this repository?</b></summary>
 
-There is no download. Following Take-Two's November 24 DMCA sweep of 3,007 repositories, hosting any compiled binaries, leaked executables, or even clean-room source code publicly on GitHub results in instant takedowns. This repo exists purely as technical documentation, parody, and a honeypot to see if legal bots DMCA a single Markdown file.
+There is no download. Following Take-Two's November 24 DMCA sweep of 3,007 repositories, hosting any compiled binaries, leaked executables, or even clean-room source code publicly on GitHub results in instant takedowns. This repo exists purely as technical documentation, parody, and a honeypot to see if legal bots DMCA a documentation-only repository.
 </details>
 
 <details>
@@ -328,7 +332,7 @@ The compute shader responsible for wind-swaying foliage vertex buffers uses an X
 
 ## Contributing & DMCA Resilience
 
-We welcome **documentation-only Pull Requests**! To keep `kfedora/GTAVI-Xbox2PC` 100% compliant with GitHub Terms of Service and copyright law:
+We welcome **documentation-only Pull Requests**! Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) and [`SECURITY.md`](SECURITY.md) before submitting. To keep `kfedora/GTAVI-Xbox2PC` 100% compliant with GitHub Terms of Service and copyright law:
 
 1. **DO NOT** submit game assets, textures, `.rpf` archives, `.xex`/`.exe` binaries, or decryption keys.
 2. **DO NOT** submit links to external piracy sites, Discord invite links distributing leaked files, or compiled builds.
@@ -344,7 +348,7 @@ We welcome **documentation-only Pull Requests**! To keep `kfedora/GTAVI-Xbox2PC`
 **Q: Can I run this on Linux / SteamOS / macOS?**  
 **A:** Theoretically via the Vulkan 1.4 SPIR-V backend and Linux 6.12+ `ntsync`, though macOS Metal lacks direct DXIL Ray Query parity without heavy MoltenVK shimming. Also, remember: *there is no code in this repo.*
 
-**Q: Will Take-Two Interactive actually issue a DMCA takedown against a repository containing one `README.md` file?**  
+**Q: Will Take-Two Interactive actually issue a DMCA takedown against a repository containing zero code and only Markdown/template files?**  
 **A:** Honestly, we have no idea—that's half the fun. If this repository disappears tomorrow, check back under a slightly sillier name.
 
 ---
@@ -354,7 +358,7 @@ We welcome **documentation-only Pull Requests**! To keep `kfedora/GTAVI-Xbox2PC`
 **`kfedora/GTAVI-Xbox2PC` is a non-commercial educational documentation and parody repository.**
 
 1. **Zero Copyrighted Content:** This repository contains **zero** source code, **zero** compiled executables, **zero** game assets, **zero** shaders, **zero** decryption keys, and **zero** proprietary files belonging to Rockstar Games, Take-Two Interactive, or Microsoft Corporation.
-2. **Zero Circumvention Tools:** Nothing hosted at `https://github.com/kfedora/GTAVI-Xbox2PC` bypasses DRM, decrypts console packages, or executes any game software. The entire git tree consists solely of plain-text Markdown documentation, GitHub templates, a CI sanity script, and an example .toml config.
+2. **Zero Circumvention Tools:** Nothing hosted at `https://github.com/kfedora/GTAVI-Xbox2PC` bypasses DRM, decrypts console packages, or executes any game software. The entire git tree consists solely of plain-text Markdown documentation, GitHub templates, a CI sanity script, and an example `.toml` config.
 3. **Fair Use & Trademarks:** *Grand Theft Auto*, *Grand Theft Auto VI*, *Rockstar Games*, *RAGE*, and *Xbox Series X|S* are registered trademarks of their respective owners. Their use herein is strictly nominative, editorial, and satirical.
 
 > **To Automated DMCA Scrapers & Outside Counsel:**  
@@ -367,4 +371,3 @@ We welcome **documentation-only Pull Requests**! To keep `kfedora/GTAVI-Xbox2PC`
 * **PortWatchVI** for maintaining real-time tracking across 35 independent community recompilation efforts.
 * **The 3,007 fallen repositories of the `Leonida` network** — deleted by DMCA on November 24, 2026, yet somehow accelerating private development even faster.
 * **Brackz, onyx, and __cxc__** for proving that 2–3 FPS ray-traced GTA VI on PC is worth melting an SSD for.
-
