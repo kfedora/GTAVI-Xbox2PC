@@ -1,0 +1,44 @@
+name: 🐛 Bug Report / Documentation Issue
+description: Report a rendering quirk, frame-time spike, or typo in the README
+title: "[Bug]: "
+labels: ["bug"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before opening an issue, please confirm you understand **`kfedora/GTAVI-Xbox2PC` hosts zero source code, zero executables, and zero game assets.**
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Issue Category
+      options:
+        - "Performance (< 1 FPS slideshow)"
+        - "Graphics / Neon Magenta Palm Trees"
+        - "Physics (Airboat launched NPC into orbit)"
+        - "Audio (Continuous 440Hz sine wave)"
+        - "Gone Fishing Crash (Water buoyancy singularity)"
+        - "README Typo / Documentation Fix"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the Issue
+      description: Tell us what happened (or suggest a hilarious improvement to the documentation).
+      placeholder: "Staring at the boat floorboards didn't raise my FPS above 3.5..."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: compliance
+    attributes:
+      label: Compliance Checklist
+      options:
+        - label: "I confirm I am NOT asking for .xex, .exe, .rpf, or leaked download links."
+          required: true
+        - label: "I understand this repository only contains documentation, templates, and example configs."
+          required: true
+          
