@@ -16,7 +16,7 @@
 [![Target Binary](https://img.shields.io/badge/Target-Xbox_Series_X%7CS_(XSX)-107C10?style=for-the-badge&logo=xbox)](https://github.com/kfedora/GTAVI-Xbox2PC)
 [![Graphics API](https://img.shields.io/badge/Backend-DX12_%7C_Vulkan_1.4-0078D4?style=for-the-badge)](https://github.com/kfedora/GTAVI-Xbox2PC)
 [![Ray Tracing](https://img.shields.io/badge/RTGI-Hardware_Ray_Query-76B900?style=for-the-badge)](https://github.com/kfedora/GTAVI-Xbox2PC)
-[![Zero-IP CI](https://img.shields.io/github/actions/workflow/status/kfedora/GTAVI-Xbox2PC/verify-docs.yml?branch=master&style=for-the-badge&label=Zero--IP_CI)](https://github.com/kfedora/GTAVI-Xbox2PC/actions)
+[![Zero-IP CI](https://img.shields.io/github/actions/workflow/status/kfedora/GTAVI-Xbox2PC/verify-docs.yml?branch=master&style=for-the-badge&label=Zero-IP_CI)](https://github.com/kfedora/GTAVI-Xbox2PC/actions)
 [![DMCA Speedrun](https://img.shields.io/badge/DMCA_Status-Any%25_Speedrun-DC143C?style=for-the-badge)](https://github.com/kfedora/GTAVI-Xbox2PC)
 [![GitHub Stars](https://img.shields.io/github/stars/kfedora/GTAVI-Xbox2PC?style=for-the-badge&color=gold)](https://github.com/kfedora/GTAVI-Xbox2PC/stargazers)
 
